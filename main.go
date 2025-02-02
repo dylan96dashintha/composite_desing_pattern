@@ -2,8 +2,8 @@ package main
 
 import "fmt"
 
-// RestaurantMenuComponent - component interface
-type RestaurantMenuComponent interface {
+// MenuComponent - component interface
+type MenuComponent interface {
 	Serve()
 }
 
@@ -28,10 +28,10 @@ func (f *FreshJuice) Serve() {
 // Buffet  - Composite node
 type Buffet struct {
 	Name  string
-	Items []RestaurantMenuComponent
+	Items []MenuComponent
 }
 
-func (b *Buffet) Add(item RestaurantMenuComponent) {
+func (b *Buffet) Add(item MenuComponent) {
 	b.Items = append(b.Items, item)
 }
 
@@ -43,9 +43,7 @@ func (b *Buffet) Serve() {
 }
 
 func main() {
-	yellowRice := &Rice{
-		Name: "yellow rice",
-	}
+	yellowRice := &Rice{Name: "yellow rice"}
 	mangoJuice := &FreshJuice{Name: "Mango Juice"}
 
 	dinnerBuffet := &Buffet{
